@@ -45,11 +45,11 @@ public class Employee {
         this.hoursWorked = (double) hoursWorked;
     }
 
-    public double isPatRate() {
+    public double isPayRate() {
         return payRate;
     }
 
-    public void setPatRate(double patRate) {
+    public void setPayRate(double patRate) {
         this.payRate = patRate;
     }
 
@@ -57,6 +57,17 @@ public class Employee {
         double grossPay = this.hoursWorked * this.payRate;
         return grossPay;
 
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("employeeId=").append(employeeId);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", hoursWorked=").append(hoursWorked);
+        sb.append(", payRate=").append(payRate);
+        sb.append('}');
+        return sb.toString();
     }
 
 

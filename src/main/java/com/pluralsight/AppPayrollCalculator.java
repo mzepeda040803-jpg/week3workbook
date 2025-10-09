@@ -5,9 +5,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-public class App {
+public class AppPayrollCalculator {
 
     public static void main(String[] args) {
+        Employee[] employees = readEmployees();
+
+        for (Employee employee: employees) {
+            System.out.println(employee);
+        }
+
+    }
+
+    private static Employee[] readEmployees() {
+        Employee[] employees = new Employee[8];
+
 
         try {
         // create a FileReader object connected to the File
@@ -16,9 +27,10 @@ public class App {
              BufferedReader bufferedReader = new BufferedReader(fileReader);
              String Line;
 
-
         //skip header line
              bufferedReader.readLine();
+
+              int index = 0;
         // read until there is no more data
               while ((Line = bufferedReader.readLine()) != null) {
                  System.out.println(Line);
@@ -43,11 +55,20 @@ public class App {
                   //OR
                   employee.setHoursWorked(Double.parseDouble(parts[2]));
 
+                  String payRateAsString = parts[3];
+                  double payRate = Double.parseDouble(payRateAsString);
+                  employee.setPayRate(payRate);
+                  //OR
+                  employee.setPayRate(Double.parseDouble(parts[3]));
 
 
 
 
+
+                 employees[index] = employee;
                  System.out.println(employee);
+                 index = index + 1;
+
              }
         // close the stream and release the resources
         bufferedReader.close();
@@ -56,6 +77,6 @@ public class App {
              e.printStackTrace();
         }
 
-
+        return employees;
     }
 }
